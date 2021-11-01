@@ -39,10 +39,12 @@ def create_control_case_translation_split_dataset():
         'Y': case[1],
         'Class': 'case'
     })
+    
     df = pd.concat([control_df, case_df], ignore_index=True)
-    df.to_csv('case_control_translation_split.csv')
-
+    df.to_csv('case_control_translation_split.csv', index=False)  
     return 0
 
-
+if __name__ == '__main__':
+    create_control_case_translation_split_dataset()
+    
 
