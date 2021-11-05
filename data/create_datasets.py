@@ -2,9 +2,6 @@
 import numpy as np
 import pandas as pd
 
-
-
-
 def create_control_case_translation_split_dataset():
     # create rotation matrix
     theta = np.pi/3
@@ -12,21 +9,19 @@ def create_control_case_translation_split_dataset():
     R = np.array([[c,-s],[s,c]])
 
     # Control class
-    num_samples = 200
-    mean = np.array([1,1])
+    num_samples = 400
+    mean = np.array([1,-1])
     cov = np.diag([5,0.1])
     control = np.random.multivariate_normal(mean, cov, size=(num_samples,))
-    
+
     # Case class
-    num_samples = 200
-    mean = np.array([1,2]) # notice the difference
+    num_samples = 400
+    mean = np.array([-1,1]) # notice the difference
     cov = np.diag([5,0.1])
     case = np.random.multivariate_normal(mean, cov, size=(num_samples,))
-    
     # rotate
     control = R@control.T
     case = R@case.T
-
 
     control_df = pd.DataFrame(data = {
         'X': control[0],
